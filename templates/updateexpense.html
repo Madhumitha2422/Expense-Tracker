@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block body %}
+<section class="background-hm">
+<div class="container">
+     <div class="row min-vh-100 align-items-center text-center text-md-left">
+          <div class="col-md-6 pl-md-5 pr-md-5 para" data-aos="fade-left" >
+               <h1><span>Edit Expense</span></h1>
+               <form action="/updateexpense/{{ expense.id }}" method="POST">
+                    <!-- Adjusted form action -->
+               <input type="hidden" value="{{expense.id}}" name="id" id="id" >
+               <div class="form-group">
+                    <label for="Date"></label>
+                    <input class="form-control" value="{{expense.date}}" type="date" name="date" id="date">
+               </div>
+               <div class="form-group">
+                    <label for="">Expense Name</label>
+                    <input class="form-control" value="{{expense.expensename}}" type="text" name="expensename" id="expensename">
+                   
+               </div>
+               <div class="form-group">
+                    <label for="">Expense Amount</label>
+                    <input class="form-control" value="{{expense.amount}}"  type ="text" name="amount" id="amount">
+                   
+               </div>
+               <div class="form-group">
+                    <label for="">Expense Category</label>
+                    <select class="form-control" name="category" id="category">
+                        <option value="food" {% if expense.category == 'food' %} selected {% endif %}>Food</option>
+                        <option value="entertainment" {% if expense.category == 'entertainment' %} selected {% endif %}>Entertainment</option>
+                        <option value="business" {% if expense.category == 'business' %} selected {% endif %}>Business</option>
+                        <option value="other" {% if expense.category == 'other' %} selected {% endif %}>Other</option>
+                    </select>
+               </div>
+                 <input class="btn btn-danger" type="submit" value="Update" id=""> <!-- Corrected class attribute -->
+            </form>
+        </div>
+    </div>
+</div>
+</section>   
+{% endblock %}
